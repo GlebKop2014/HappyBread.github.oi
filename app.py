@@ -14,7 +14,7 @@ if os.path.exists(file_path):
     for f in range(len(projectsfile)):
         if os.path.isfile(os.path.join(file_path, projectsfile[f])):
 
-            fi = os.path.join(script_dir, f"projects\{projectsfile[f]}")
+            fi = os.path.join(script_dir, f"projects/{projectsfile[f]}")
             name = "hi"
 
             with open(fi, "r", encoding="UTF-8") as file:
