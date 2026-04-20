@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Gorilla Horror",
+        "description": "Убегайте от монстров, собирайте предметы и зарабатывайте деньги!\nВы можете потратить заработанные деньги на крутую косметику или уникальные предметы.\nВыберите свой стиль и покоряйте мир!",
+        "tags": ["VR", "Unity"],
+        "link": "downloadLink",
+        "image": "https://img.itch.zone/aW1nLzIyODU5MTY5LnBuZw==/180x143%23c/V7%2FOv2.png"
+    },
+    {
+        "title": "Audio Translator",
+        "description": "Перевод русскую речь в английскую речь в реальном времени.",
+        "tags": ["Python", "Vosk", "TTS"],
+        "link": "#",
+        "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+        "title": "Flappy Bird",
+        "description": "Копия Flappy Bird от малолетки!",
+        "tags": ["Python", "Pygame"],
+        "link": "#",
+        "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=500&q=80"
+    }
+]

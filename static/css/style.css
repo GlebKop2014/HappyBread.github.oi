@@ -1,0 +1,320 @@
+@keyframes colorChange {
+    0% { background: #126aa5; }
+    50% { background: #05578d; }
+    100% { background: #377ba8; }
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(20deg); }
+}
+
+:root {
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text-main: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #38bdf8; 
+    --accent-glow: #38bdf880;
+    --font: 'Inter', sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.background-blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: float 10s infinite alternate;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: #7c3aed; 
+    border-radius: 40% 60% 70% 30%;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    border-radius: 60% 40% 30% 70%;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    top: 50%;
+    left: 30%;
+    width: 1000px;
+    height: 1000px;
+    background: #126aa5; 
+    border-radius: 40% 60% 70% 30%;
+    animation: colorChange 4s infinite alternate linear;
+    animation-delay: -5s;
+}
+
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.accent {
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.hero {
+    padding: 100px 0;
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #0468aa; /* Green background */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0px 0px 0 #0468aa;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0px 16px 0 #2071a7;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent);
+    padding-left: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
+    position: relative;
+}
+
+.card-wrapper:hover .card {
+    border-color: var(--accent);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 60px var(--accent-glow);
+    z-index: 10;
+}
+
+.card-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 1px;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--accent-glow),
+        transparent 40%
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+
+.card-wrapper {
+    perspective: 1000px;
+}
+
+.card-wrapper:hover .card-glow {
+    opacity: 1;
+}
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateZ(10px);
+    transition: transform 0.3s ease;
+}
+
+.card-wrapper:hover .card-image {
+    transform: translateZ(30px) scale(1.02);
+}
+
+.card-content {
+    padding: 25px;
+    transform: translateZ(20px);
+}
+
+
+.card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+    transform: translateZ(25px);
+}
+
+
+.card-link:hover {
+    border-bottom-color: var(--accent);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    transform: translateZ(15px);
+}
+
+.tag {
+    font-size: 0.75rem;
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+
+.projectCard {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 70%;
+    z-index: 9999;
+    background: #1e1e2fe8;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.blurBG{
+    position: fixed;
+    z-index: 9998;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: url("filters.svg#filter") blur(5px) saturate(100%);
+
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+
+    transition: 0.3s;
+}
+
+.blurBG:enabled{
+    backdrop-filter: url("filters.svg#filter") blur(5px) saturate(100%);
+}
+
+.title{
+    text-align: center;
+    font-size: 200%;
+}
+
+.description{
+    text-align: left;
+    width: 60%;
+}
+
+.DownloadButton{
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    background-color: #007bff;
+    padding: 10px 15%;
+    border-radius: 10px;
+}
